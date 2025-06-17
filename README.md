@@ -31,3 +31,4 @@ The project is divided into two main folders:
 
 - The **backend** is responsible for all business logic, data persistence, and user authentication.
 - The **frontend** provides a user-friendly interface for interacting with the system, allowing users to manage their personal finances.
+
