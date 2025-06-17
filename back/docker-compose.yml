@@ -2,17 +2,57 @@ version: '3.8'
 
 services:
   db:
-    image: postgres
+    image: postgres:15
     restart: always
     shm_size: 128mb
     ports:
-      - 5432:5432
+      - 55432:5432
     environment:
       POSTGRES_PASSWORD: password
+      POSTGRES_DB: trabalhoav3_dev
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    environment:
+      MIX_ENV: dev
+      DATABASE_URL: ecto://postgres:password@db/trabalhoav3_dev
+      SECRET_KEY_BASE: 123456
+      PHX_SERVER: true
+    ports:
+      - 4000:4000
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: ['sh', '-c', './wait-for-it.sh db:5432 -- mix phx.server']
+
+  frontend:
+    build:
+      context: ../front
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    volumes:
+      - ../front:/app
+    working_dir: /app
+    environment:
+      NODE_ENV: development
+      NEXT_PUBLIC_API_URL: http://localhost:4000
+    depends_on:
+      - backend
+    command: ['npm', 'run', 'dev']
 
   adminer:
     image: adminer
     restart: always
     ports:
-      - 8080:8080
+      - 18080:8080
+
+volumes:
+  pgdata:
 

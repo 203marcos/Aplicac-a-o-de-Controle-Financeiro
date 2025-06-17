@@ -4,7 +4,7 @@ import Config
 config :trabalhoAv3, TrabalhoAv3.Repo,
   username: "postgres",
   password: "password",
-  hostname: "localhost",
+  hostname: "db",
   database: "trabalhoav3_dev",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
@@ -19,7 +19,7 @@ config :trabalhoAv3, TrabalhoAv3.Repo,
 config :trabalhoAv3, TrabalhoAv3Web.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
-  http: [ip: {127, 0, 0, 1}, port: 4000],
+  http: [ip: {0, 0, 0, 0}, port: 4000],
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
