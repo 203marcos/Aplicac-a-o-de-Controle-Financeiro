@@ -8,7 +8,7 @@ Develop a **personal financial management REST API** using **Elixir** and the **
 
 ## Features
 
-The application must provide the following features:
+The application provides the following features:
 
 - **Income registration**
 - **Expense registration**
@@ -18,8 +18,8 @@ The application must provide the following features:
 
 ## Architecture
 
-- The **frontend** was developed using **Next.js**.
-- The **backend** uses **Elixir** with the **Phoenix framework**.
+- **Frontend:** Developed using **Next.js**.
+- **Backend:** Developed using **Elixir** with the **Phoenix framework**.
 - The frontend communicates with the backend REST API to perform all operations such as registration, listing, and authentication.
 
 ## Project Structure
@@ -29,40 +29,64 @@ The project is divided into two main folders:
 - `back`: contains the backend code in Elixir/Phoenix
 - `front`: contains the frontend code in Next.js
 
-- The **backend** is responsible for all business logic, data persistence, and user authentication.
-- The **frontend** provides a user-friendly interface for interacting with the system, allowing users to manage their personal finances.
+The **backend** is responsible for all business logic, data persistence, and user authentication.  
+The **frontend** provides a user-friendly interface for interacting with the system, allowing users to manage their personal finances.
 
-# T300 - Functional Programming: Final Assessment
+---
 
-This assessment instrument contains the final activity for the curricular component **T300 - Functional Programming**.
+## Running the Project with Docker
 
-## Objective
+### Prerequisites
 
-Develop a **personal financial management REST API** using **Elixir** and the **Phoenix Framework**. The goal is to create an application capable of registering a person's income and expenses.
+- [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/) installed.
 
-## Features
+### Steps
 
-The application must provide the following features:
+1. **Clone the repository:**
 
-- **Income registration**
-- **Expense registration**
-- **Listing of financial transactions**
-- **Association of tags to transactions**
-- **User registration and authentication**
+   ```sh
+   git clone <repo-url>
+   cd financeManagerApp
+   ```
 
-## Architecture
+2. **Build and start all services:**
 
-- The **frontend** was developed using **Next.js**.
-- The **backend** uses **Elixir** with the **Phoenix framework**.
-- The frontend communicates with the backend REST API to perform all operations such as registration, listing, and authentication.
+   ```sh
+   docker compose up --build
+   ```
 
-## Project Structure
+   This will:
 
-The project is divided into two main folders:
+   - Start the PostgreSQL database
+   - Start the Elixir/Phoenix backend
+   - Start the Next.js frontend
+   - Start Adminer for database management (optional)
 
-- `back`: contains the backend code in Elixir/Phoenix
-- `front`: contains the frontend code in Next.js
+3. **Access the services:**
+   - **Frontend:** [http://localhost:3000](http://localhost:3000)
+   - **Backend API:** [http://localhost:4000](http://localhost:4000)
+   - **Adminer (DB Admin):** [http://localhost:18080](http://localhost:18080)
 
-- The **backend** is responsible for all business logic, data persistence, and user authentication.
-- The **frontend** provides a user-friendly interface for interacting with the system, allowing users to manage their personal finances.
+### Notes
+
+- The backend automatically runs migrations on startup.
+- The frontend is configured to consume the local backend API.
+- To stop all services:
+  ```sh
+  docker compose down
+  ```
+
+---
+
+## Default Database Credentials
+
+- **User:** postgres
+- **Password:** password
+- **Database:** trabalhoav3_dev
+
+---
+
+## Contact
+
+Questions or suggestions? Please contact the project maintainer.
 

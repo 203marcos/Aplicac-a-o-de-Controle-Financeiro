@@ -15,7 +15,7 @@ services:
 
   backend:
     build:
-      context: .
+      context: ./back
       dockerfile: Dockerfile
     depends_on:
       - db
@@ -26,25 +26,20 @@ services:
       PHX_SERVER: true
     ports:
       - 4000:4000
-    volumes:
-      - .:/app
     working_dir: /app
     command: >
       sh -c "
         ./wait-for-it.sh db:5432 -- \
-        mix deps.get && \
         mix ecto.setup && \
         mix phx.server
       "
 
   frontend:
     build:
-      context: ../front
+      context: ./front
       dockerfile: Dockerfile
     ports:
       - 3000:3000
-    volumes:
-      - ../front:/app
     working_dir: /app
     environment:
       NODE_ENV: development
