@@ -29,7 +29,13 @@ services:
     volumes:
       - .:/app
     working_dir: /app
-    command: ['sh', '-c', './wait-for-it.sh db:5432 -- mix phx.server']
+    command: >
+      sh -c "
+        ./wait-for-it.sh db:5432 -- \
+        mix deps.get && \
+        mix ecto.setup && \
+        mix phx.server
+      "
 
   frontend:
     build:

@@ -23,11 +23,7 @@ config :trabalhoAv3, TrabalhoAv3Web.Endpoint,
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
-  secret_key_base: "/+wN0rX0BxOk/+9fuXLpZBuqSAc1cU07iWIsLMCFxSIDE2/OPgLfnlSkMA78Km3A",
-  watchers: [
-    esbuild: {Esbuild, :install_and_run, [:trabalhoAv3, ~w(--sourcemap=inline --watch)]},
-    tailwind: {Tailwind, :install_and_run, [:trabalhoAv3, ~w(--watch)]}
-  ]
+  secret_key_base: "/+wN0rX0BxOk/+9fuXLpZBuqSAc1cU07iWIsLMCFxSIDE2/OPgLfnlSkMA78Km3A"
 
 # ## SSL Support
 #
